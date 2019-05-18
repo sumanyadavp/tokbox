@@ -1,0 +1,46 @@
+<html>
+    <head>
+        
+<script type="text/javascript">
+const apiKey='<%=apiKey%>';
+const sessionId='<%=sessionId%>';
+const token='<%=token%>';
+const roomId='<%=roomId%>';
+let phoneNumber;
+const makeRequest  = async(path)=>{
+    try{
+const response= await fetch(`/${path}?roomId=${roomId}&phoneNumber=${phoneNumber}`);
+const data=await response;
+ }catch(e){
+console.log('there was an error dailing out',e);
+
+    }
+}
+const dialOut =()=>{
+    phoneNumber=document.getElementById('phoneNumber').value;
+    makeRequest('dial-out');
+};
+const hangUp =()=>{
+    //phoneNumber=document.getElementById('phoneNumber').value;
+    makeRequest('hang_up');
+};
+
+</script>
+<script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+<script  type="text/javascript" src="/js/opentok.js"></script>
+
+
+
+
+        </head>
+        <body>
+            <div id="publisher"></div>
+                <div id="subscriber"></div>
+            
+<input type ="text" id="phoneNumber">
+<button onclick="dialOut()">dialOut</button>
+<button onclick="hangUp()"> hangUp</button>
+
+        </body>
+        </html>
+    
